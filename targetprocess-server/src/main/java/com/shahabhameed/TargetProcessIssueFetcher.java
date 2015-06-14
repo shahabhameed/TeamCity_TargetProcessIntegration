@@ -35,6 +35,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
 	 public static final String TYPE_FIELD = "Type";
 	 public static final String PRIORITY_FIELD = "Priority";
 	 public static final String SEVERITY_FIELD = "Severity";
+	 public static final String STATE_NUMERIC_FIELD = "NumericState"; 
 
 	 private Pattern myPattern;
 
@@ -106,12 +107,16 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
         
         boolean resolved=false;
         boolean isfeatureRequest=false;
-
+        int stateNumeric = 3; // green
+        
         try{
 	        if(state != null) {
 	        	
-	            if(state.equalsIgnoreCase("Closed") ){
+	            if(state.equalsIgnoreCase("Closed") || state.equalsIgnoreCase("Fixed") || state.equalsIgnoreCase("Done")){
 	            	resolved = true;
+	            	stateNumeric = 3;
+	            } else if (state.equalsIgnoreCase("Open") || state.equalsIgnoreCase("Invalid") ) {
+	            	stateNumeric = 2;
 	            }
 	        }
 	        
@@ -132,6 +137,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
         map.put(TYPE_FIELD, type);
         map.put(PRIORITY_FIELD, priority);
         map.put(SEVERITY_FIELD, severity);
+        map.put(STATE_NUMERIC_FIELD, String.valueOf(stateNumeric));
         
         issueData = new IssueData(issueId, map, resolved, isfeatureRequest, url);
         return issueData;
