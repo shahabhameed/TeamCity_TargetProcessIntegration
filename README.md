@@ -4,8 +4,16 @@
 This project creates a [TeamCity](www.jetbrains.com/teamcity/) Plugin to communicate with [TargetProcess](http://www.targetprocess.com/) issue tracker.<BR>
 Tested on TeamCity 9.0.4
 
+## Compile
+```
+1) Clone the Github repository from "https://github.com/shahabhameed/TeamCity_TargetProcessIntegration/" to any directory or download zip "https://github.com/shahabhameed/TeamCity_TargetProcessIntegration/archive/master.zip".
+2) Open any JavaEE IDE and Import it as an existing maven project.
+3) Execute "mvn clean package" at the root pom.xml 
+
+```
+
 ## Quick-Use
-If you just need the zip to activate the plugin take this zip: *target/teamcity_trac_integration.zip* <BR>
+If you just need the zip to activate the plugin take this zip: *target/targetprocess.zip* <BR>
 
 ## Installation
 To install the plugin login TeamCity with administrator account <BR>
@@ -22,3 +30,15 @@ Running `mvn clean package` will automatically download all dependencies and wil
 
 ## Workflow
 The plugin reads the json for a specific issue with an InputStream and then parses the text with regular expressions.
+
+Screenshots
+-----------
+
+- **Configure Connection**
+
+![alt text](https://github.com/shahabhameed/TeamCity_TargetProcessIntegration/blob/master/screens/screen01.png "Configure Connection")
+
+- **Issue Fetched**
+
+![alt text](https://github.com/shahabhameed/TeamCity_TargetProcessIntegration/blob/master/screens/screen02.png "Issue Fetched")
+
