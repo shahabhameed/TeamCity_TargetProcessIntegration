@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:shemas-jetbrains-com:teamcity-plugin-v1-xml">
+  <info>
+    <name>targetprocess</name>
+    <display-name>TargetProcess Integration</display-name>
+    <version>1.0</version>
+    <description>Support for TargetProcess issue tracker</description>
+    <download-url>http://www.github.com/shahabhameed/TeamCity_TargetProcessIntegration</download-url>
+    <email>shahabhameed@gmail.com</email>
+    <vendor>
+      <name>Muhammad Shahab Hameed</name>
+      <url>https://www.github.com/shahabhameed</url>
+      <logo></logo>
+    </vendor>
+  </info>
+  <deployment use-separate-classloader="false" />
+</teamcity-plugin>
