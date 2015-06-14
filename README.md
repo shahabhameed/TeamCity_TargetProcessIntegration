@@ -1,12 +1,24 @@
-This is a plugin for [TeamCity](www.jetbrains.com/teamcity/) to provide
-integration into the popular [TargetProcess](http://www.targetprocess.org/) issue tracker.
+# TargetProcess Issue Tracker plugin for TeamCity
 
-It uses the REST API to fetch information about issue tickets from a given
-TargetProcess installation so it can be displayed in TeamCity.
+## Introduction
+This project creates a [TeamCity](www.jetbrains.com/teamcity/) Plugin to communicate with [TargetProcess](http://www.targetprocess.com/) issue tracker.<BR>
+Tested on TeamCity 9.0.4
 
-To build it, just invoke `mvn package` and it will download all required
-dependencies and create a zip file which you can put into your TeamCity
-plugins directory.
-You can also quickly deploy it via SSH by copying and adapting the provided
-`build.properties.template` (as `build.properties`) and use `ant deploy` to
-copy it to your installation using SCP. *jsch support in Ant required.*
+## Quick-Use
+If you just need the zip to activate the plugin take this zip: *target/teamcity_trac_integration.zip* <BR>
+
+## Installation
+To install the plugin login TeamCity with administrator account <BR>
+1) Select **Administration->Plugin List** <BR>
+2) Click **Upload plugin zip**.<BR>
+The server will tell you that the plugin gets uploaded to *<Teamcity Data Directory>\plugins*.
+After the plugin is uploaded you have to restart the server.<BR>
+(Check the [Documentation](https://confluence.jetbrains.com/display/TCD9/Installing+Additional+Plugins) for manually installing the plugin)
+
+## Building
+You'll need JDK 1.7 and Maven (apache-maven-3.3.3-bin) installed and the corresponding environment settings (`JAVA_HOME=<JDK Location>` and `MAVEN_HOME="MAVEN Location`')
+
+Running `mvn clean package` will automatically download all dependencies and will create the zip file in the `target` folder
+
+## Workflow
+The plugin reads the json for a specific issue with an InputStream and then parses the text with regular expressions.
