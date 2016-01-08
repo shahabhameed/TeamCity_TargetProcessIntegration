@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
+import jetbrains.buildServer.issueTracker.IssueProviderType;
 import jetbrains.buildServer.issueTracker.SIssueProvider;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class TargetProcessIssueProvider extends AbstractIssueProvider implements SIssueProvider{
 
-    public TargetProcessIssueProvider(@NotNull IssueFetcher fetcher) {
-        super("targetprocess", fetcher);
+    public TargetProcessIssueProvider(@NotNull final IssueProviderType type, @NotNull IssueFetcher fetcher) {
+        super(type.getType(), fetcher);
     }
 
     @NotNull
