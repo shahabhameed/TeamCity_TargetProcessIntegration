@@ -2,7 +2,7 @@
 
 ## Introduction
 This project creates a [TeamCity](www.jetbrains.com/teamcity/) Plugin to communicate with [TargetProcess](http://www.targetprocess.com/) issue tracker.<BR>
-Tested on TeamCity 9.1.5
+Tested on TeamCity 9.1.5 and Java 1.6+
 
 ## Compile
 ```
