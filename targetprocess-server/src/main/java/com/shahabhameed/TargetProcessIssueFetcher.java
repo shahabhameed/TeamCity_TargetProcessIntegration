@@ -139,15 +139,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
         map.put(SEVERITY_FIELD, severity);
         map.put(STATE_NUMERIC_FIELD, String.valueOf(stateNumeric));
         
-        StringBuilder issueURL = new StringBuilder();
-    issueURL.append(_host);
-    if (!_host.endsWith("/")) {
-      issueURL.append("/");
-    }
-    issueURL.append("tp2/entity/");
-    issueURL.append(issueId);
-    
-        issueData = new IssueData(issueId, map, resolved, isfeatureRequest, issueURL.toString());
+        issueData = new IssueData(issueId, map, resolved, isfeatureRequest, "https://semotus.tpondemand.com/tp2/entity/"+ issueId);
         return issueData;
   }
 
