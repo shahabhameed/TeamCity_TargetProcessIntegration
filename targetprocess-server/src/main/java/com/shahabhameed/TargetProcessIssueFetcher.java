@@ -61,6 +61,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
     @NotNull
     public IssueData fetch() {
       String url = getUrl(host, issueId) + "?format=json";
+      String dashboardUrl = getDashboardUrl(host, issueId);
       
       try {
     	  
@@ -69,7 +70,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
     	  IssueData result = null;
     	  
     	  if (json != null) {
-    		  result = parseIssue(issueId, url, json);
+    		  result = parseIssue(issueId, dashboardUrl, json);
     	  }
           
     	  if (result == null) {
@@ -83,7 +84,9 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
       }
     }
 
-    private IssueData parseIssue(String issueId, String url, final InputStream json) {
+    
+
+    private IssueData parseIssue(String issueId, String dashboardUrl, final InputStream json) {
     	
     	IssueData issueData = null;
     	BufferedReader reader = new BufferedReader(new InputStreamReader(json));
@@ -139,7 +142,8 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
         map.put(SEVERITY_FIELD, severity);
         map.put(STATE_NUMERIC_FIELD, String.valueOf(stateNumeric));
         
-        issueData = new IssueData(issueId, map, resolved, isfeatureRequest, url);
+        
+        issueData = new IssueData(issueId, map, resolved, isfeatureRequest, dashboardUrl);
         return issueData;
   }
 
@@ -167,6 +171,25 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
     url.append("api/v1/Bugs/");
     url.append(realId);
     return url.toString();
+  }
+  
+  private String getDashboardUrl(@NotNull final String _host, @NotNull final String _id) {
+      String realId = _id;
+      Matcher matcher = myPattern.matcher(_id);
+      if (matcher.find()) {
+        realId = matcher.group(1);
+      }
+      
+      StringBuilder url = new StringBuilder();
+      url.append(_host);
+      if (!_host.endsWith("/")) {
+        url.append("/");
+      }
+      
+      url.append("tp2/entity/");
+      url.append(realId);
+      return url.toString();
+      
   }
 
 }
